@@ -1,7 +1,7 @@
 const Express = require('express');
 const context = Express();
 const SenecaWeb = require('seneca-web');
-const port = 3000;
+const port = 3001;
 
 let Routes = [{
   pin: 'role:api,cmd:*',
