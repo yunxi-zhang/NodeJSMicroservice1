@@ -5,12 +5,12 @@ const port = 3000;
 
 let Routes = [{
   pin: 'role:api,cmd:*',
-  prefix: '/api',
+  prefix: '/',
   map: {
-    home: {
+    sellerBalance: {
       GET: true,
     },
-    profile: {
+    buyerBalance: {
       GET: true,
     }
   }
