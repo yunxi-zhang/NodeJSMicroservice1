@@ -1,0 +1,26 @@
+{
+  "name": "nodejsmicroservice1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunxi-zhang/NodeJSMicroservice1.git"
+  },
+  "author": "Yunxi Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yunxi-zhang/NodeJSMicroservice1/issues"
+  },
+  "homepage": "https://github.com/yunxi-zhang/NodeJSMicroservice1#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "seneca": "^3.23.1",
+    "seneca-web": "^2.2.1",
+    "seneca-web-adapter-express": "^1.2.1"
+  }
+}
