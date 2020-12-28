@@ -4,7 +4,7 @@ const SenecaWeb = require('seneca-web');
 const port = 3001;
 
 let Routes = [{
-  pin: 'role:api,cmd:*',
+  pin: 'role:api,get:*',
   prefix: '/',
   map: {
     sellerBalance: {
