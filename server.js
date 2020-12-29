@@ -64,7 +64,8 @@ let senecaWebConfig = {
 
 const seneca = require('seneca')({ log: 'silent' })
   .use(SenecaWeb, senecaWebConfig)
-  .use('bank')
+  .use('buyer')
+  .use('supplier')
   .use('entity')
   .use('mongo-store', {
     uri: 'mongodb://127.0.0.1:27017/local',
