@@ -4,7 +4,7 @@ const SenecaWeb = require('seneca-web');
 const port = 3001;
 
 let Routes = [{
-  pin: 'role:api,get:*',
+  pin: 'role:bank,get:*',
   prefix: '/',
   map: {
     sellerBalance: {
@@ -12,6 +12,18 @@ let Routes = [{
     },
     buyerBalance: {
       GET: true,
+    }
+  }
+},
+{
+  pin: 'role:bank,add:*',
+  prefix: '/',
+  map: {
+    sellerBalance: {
+      POST: true,
+    },
+    buyerBalance: {
+      POST: true,
     }
   }
 }];
@@ -24,7 +36,12 @@ let senecaWebConfig = {
 
 const seneca = require('seneca')({ log: 'silent' }) 
     .use(SenecaWeb, senecaWebConfig)
-    .use('apis')
+    .use('bank')
+    .use('entity')
+    .use('mongo-store', {
+      uri: 'mongodb://127.0.0.1:27017/local',
+      options: {}
+    })
     .ready(() => {
         context.listen(port, () => {
           console.log('listening on port ' + port);
