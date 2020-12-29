@@ -4,26 +4,34 @@ const SenecaWeb = require('seneca-web');
 const port = 3001;
 
 let Routes = [{
-  pin: 'role:bank,get:*',
-  prefix: '/',
+  pin: 'role:supplier,cmd:*',
+  prefix: '/supplier',
   map: {
-    seller: {
-      GET: true,
+    list: {
+      GET: true
     },
-    buyer: {
+    load: {
       GET: true,
+      suffix: '/:id'
+    },
+    create: {
+      POST: true
     }
   }
 },
 {
-  pin: 'role:bank,add:*',
-  prefix: '/',
+  pin: 'role:buyer,cmd:*',
+  prefix: '/buyer',
   map: {
-    seller: {
-      POST: true,
+    list: {
+      GET: true,
     },
-    buyer: {
-      POST: true,
+    load: {
+      GET: true,
+      suffix: '/:id'
+    },
+    create: {
+      POST: true
     }
   }
 }];
@@ -43,7 +51,8 @@ const seneca = require('seneca')({ log: 'silent' })
     options: {}
   })
   .ready(() => {
-    context.listen(port, () => {
+    var server = seneca.export('web/context')()
+    server.listen(port, () => {
       console.log('listening on port ' + port);
     });
   });
