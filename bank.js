@@ -18,12 +18,10 @@ module.exports = function bank(options) {
   })
 
   this.add('role:bank,get:seller', function (msg, reply) {
-    console.log("msg.args.query:", msg.args.query)
     this.make('seller').load$(msg.args.query.id, function(err, seller) {
       if (err) {
         reply(err);
       } else {
-        console.log("seller:", seller)
         reply(null, seller)
       }
     })
@@ -46,7 +44,6 @@ module.exports = function bank(options) {
       if (err) {
         reply(err);
       } else {
-        console.log("buyer:", buyer)
         reply(null, buyer)
       }
     })
