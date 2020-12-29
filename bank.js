@@ -4,6 +4,12 @@ module.exports = function bank(options) {
     reply({ balance: 10 })
   })
 
+  /**
+   * accept a JSON body containing a key called balance along with a value
+   * {
+   *  "balance": "10"
+   * }
+   */
   this.add('role:bank,add:sellerBalance', function (msg, reply) {
     var bank = this.make('bank')
     bank.buyerBalance = JSON.parse(msg.args.body).balance
