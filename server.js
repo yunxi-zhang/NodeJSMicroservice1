@@ -20,6 +20,16 @@ let Routes = [{
   }
 },
 {
+  pin: 'role:supplier,cmd:list,criteria:byType',
+  prefix: '/supplier',
+  map: {
+    list: {
+      GET: true,
+      suffix: '/:type'
+    }
+  }
+},
+{
   pin: 'role:buyer,cmd:*',
   prefix: '/buyer',
   map: {
@@ -32,6 +42,16 @@ let Routes = [{
     },
     create: {
       POST: true
+    }
+  }
+},
+{
+  pin: 'role:buyer,cmd:list,criteria:byType',
+  prefix: '/buyer',
+  map: {
+    list: {
+      GET: true,
+      suffix: '/:type'
     }
   }
 }];

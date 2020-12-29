@@ -3,9 +3,19 @@ module.exports = function bank(options) {
    * Get a list of all suppliers
    */
   this.add('role:supplier,cmd:list', function (msg, reply) {
-    console.log('1')
-    console.log("id:", msg.args.query.id)
-    this.make('supplier').list$({}, function(err, supplier) {
+    this.make('supplier').list$({}, function (err, supplier) {
+      if (err) {
+        reply(err);
+      } else {
+        reply(null, supplier)
+      }
+    })
+  })
+    /**
+   * Get a list of filtered suppliers by type
+   */
+  this.add('role:supplier,cmd:list,criteria:byType', function (msg, reply) {
+    this.make('supplier').list$({ type: msg.args.params.type }, function (err, supplier) {
       if (err) {
         reply(err);
       } else {
@@ -17,7 +27,7 @@ module.exports = function bank(options) {
    * Load a supplier by its Id
    */
   this.add('role:supplier,cmd:load', function (msg, reply) {
-    this.make('supplier').load$(msg.args.params.id, function(err, supplier) {
+    this.make('supplier').load$(msg.args.params.id, function (err, supplier) {
       if (err) {
         reply(err);
       } else {
@@ -47,7 +57,19 @@ module.exports = function bank(options) {
    * Get a list of all buyers
    */
   this.add('role:buyer,cmd:list', function (msg, reply) {
-    this.make('buyer').list$({}, function(err, supplier) {
+    this.make('buyer').list$({}, function (err, supplier) {
+      if (err) {
+        reply(err);
+      } else {
+        reply(null, supplier)
+      }
+    })
+  })
+  /**
+   * Get a list of filtered buyers by type
+   */
+  this.add('role:buyer,cmd:list,criteria:byType', function (msg, reply) {
+    this.make('buyer').list$({ type: msg.args.params.type }, function (err, supplier) {
       if (err) {
         reply(err);
       } else {
@@ -59,7 +81,7 @@ module.exports = function bank(options) {
    * Load a buyer by its Id
    */
   this.add('role:buyer,cmd:load', function (msg, reply) {
-    this.make('buyer').load$(msg.args.params.id, function(err, supplier) {
+    this.make('buyer').load$(msg.args.params.id, function (err, supplier) {
       if (err) {
         reply(err);
       } else {
