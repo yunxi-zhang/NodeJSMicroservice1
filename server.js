@@ -7,7 +7,13 @@ let Routes = [{
   pin: 'role:bank,get:*',
   prefix: '/',
   map: {
+    sellers: {
+      GET: true,
+    },
     seller: {
+      GET: true,
+    },
+    buyers: {
       GET: true,
     },
     buyer: {

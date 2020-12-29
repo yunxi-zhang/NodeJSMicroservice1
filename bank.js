@@ -1,4 +1,13 @@
 module.exports = function bank(options) {
+  this.add('role:bank,get:sellers', function (msg, reply) {
+    this.make('seller').list$({}, function(err, seller) {
+      if (err) {
+        reply(err);
+      } else {
+        reply(null, seller)
+      }
+    })
+  })
     /**
    * accept a JSON body containing a key called balance along with a value
    * {
@@ -27,6 +36,15 @@ module.exports = function bank(options) {
     })
   })
 
+  this.add('role:bank,get:buyers', function (msg, reply) {
+    this.make('buyer').list$({}, function(err, seller) {
+      if (err) {
+        reply(err);
+      } else {
+        reply(null, seller)
+      }
+    })
+  })
   this.add('role:bank,add:buyer', function (msg, reply) {
     var buyer = this.make('buyer')
     buyer.balance = JSON.parse(msg.args.body).balance
