@@ -7,10 +7,10 @@ let Routes = [{
   pin: 'role:bank,get:*',
   prefix: '/',
   map: {
-    sellerBalance: {
+    seller: {
       GET: true,
     },
-    buyerBalance: {
+    buyer: {
       GET: true,
     }
   }
@@ -19,10 +19,10 @@ let Routes = [{
   pin: 'role:bank,add:*',
   prefix: '/',
   map: {
-    sellerBalance: {
+    seller: {
       POST: true,
     },
-    buyerBalance: {
+    buyer: {
       POST: true,
     }
   }

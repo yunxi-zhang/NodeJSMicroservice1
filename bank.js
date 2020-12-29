@@ -1,28 +1,54 @@
 module.exports = function bank(options) {
-
-  this.add('role:bank,get:sellerBalance', function (msg, reply) {
-    reply({ balance: 10 })
-  })
-
-  /**
+    /**
    * accept a JSON body containing a key called balance along with a value
    * {
    *  "balance": "10"
    * }
    */
-  this.add('role:bank,add:sellerBalance', function (msg, reply) {
-    var bank = this.make('bank')
-    bank.buyerBalance = JSON.parse(msg.args.body).balance
-    bank.save$(function (err, saved_bank) {
+  this.add('role:bank,add:seller', function (msg, reply) {
+    var seller = this.make('seller')
+    seller.balance = JSON.parse(msg.args.body).balance
+    seller.save$(function (err, saved_seller) {
       if (err) {
         reply(err);
       } else {
-        reply(null, saved_bank)
+        reply(null, saved_seller)
       }
     })
   })
 
-  this.add('role:bank,get:buyerBalance', function (msg, reply) {
-    reply({ balance: 20 })
+  this.add('role:bank,get:seller', function (msg, reply) {
+    console.log("msg.args.query:", msg.args.query)
+    this.make('seller').load$(msg.args.query.id, function(err, seller) {
+      if (err) {
+        reply(err);
+      } else {
+        console.log("seller:", seller)
+        reply(null, seller)
+      }
+    })
+  })
+
+  this.add('role:bank,add:buyer', function (msg, reply) {
+    var buyer = this.make('buyer')
+    buyer.balance = JSON.parse(msg.args.body).balance
+    buyer.save$(function (err, saved_buyer) {
+      if (err) {
+        reply(err);
+      } else {
+        reply(null, saved_buyer)
+      }
+    })
+  })
+
+  this.add('role:bank,get:buyer', function (msg, reply) {
+    this.make('buyer').load$(msg.args.query.id, function(err, buyer) {
+      if (err) {
+        reply(err);
+      } else {
+        console.log("buyer:", buyer)
+        reply(null, buyer)
+      }
+    })
   })
 }
