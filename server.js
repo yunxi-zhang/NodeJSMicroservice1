@@ -7,13 +7,7 @@ let Routes = [{
   pin: 'role:bank,get:*',
   prefix: '/',
   map: {
-    sellers: {
-      GET: true,
-    },
     seller: {
-      GET: true,
-    },
-    buyers: {
       GET: true,
     },
     buyer: {
@@ -40,16 +34,16 @@ let senecaWebConfig = {
   context: context
 };
 
-const seneca = require('seneca')({ log: 'silent' }) 
-    .use(SenecaWeb, senecaWebConfig)
-    .use('bank')
-    .use('entity')
-    .use('mongo-store', {
-      uri: 'mongodb://127.0.0.1:27017/local',
-      options: {}
-    })
-    .ready(() => {
-        context.listen(port, () => {
-          console.log('listening on port ' + port);
-        });
-      });
+const seneca = require('seneca')({ log: 'silent' })
+  .use(SenecaWeb, senecaWebConfig)
+  .use('bank')
+  .use('entity')
+  .use('mongo-store', {
+    uri: 'mongodb://127.0.0.1:27017/local',
+    options: {}
+  })
+  .ready(() => {
+    context.listen(port, () => {
+      console.log('listening on port ' + port);
+    });
+  });
