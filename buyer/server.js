@@ -1,35 +1,9 @@
 const Express = require('express');
 const context = Express();
 const SenecaWeb = require('seneca-web');
-const port = 3001;
+const port = 3002;
 
 let Routes = [{
-  pin: 'role:supplier,cmd:*',
-  prefix: '/supplier',
-  map: {
-    list: {
-      GET: true
-    },
-    load: {
-      GET: true,
-      suffix: '/:id'
-    },
-    create: {
-      POST: true
-    }
-  }
-},
-{
-  pin: 'role:supplier,cmd:list,criteria:byType',
-  prefix: '/supplier',
-  map: {
-    list: {
-      GET: true,
-      suffix: '/:type'
-    }
-  }
-},
-{
   pin: 'role:buyer,cmd:*',
   prefix: '/buyer',
   map: {
@@ -65,7 +39,6 @@ let senecaWebConfig = {
 const seneca = require('seneca')({ log: 'silent' })
   .use(SenecaWeb, senecaWebConfig)
   .use('buyer')
-  .use('supplier')
   .use('entity')
   .use('mongo-store', {
     uri: 'mongodb://127.0.0.1:27017/local',
