@@ -7,7 +7,7 @@ module.exports = function buyer(options) {
       if (err) {
         reply(err);
       } else {
-        reply(null, buyer)
+        reply(null, buyer);
       }
     })
   })
@@ -19,7 +19,7 @@ module.exports = function buyer(options) {
       if (err) {
         reply(err);
       } else {
-        reply(null, buyer)
+        reply(null, buyer);
       }
     })
   })
@@ -31,7 +31,7 @@ module.exports = function buyer(options) {
       if (err) {
         reply(err);
       } else {
-        reply(null, buyer)
+        reply(null, buyer);
       }
     })
   })
@@ -39,13 +39,15 @@ module.exports = function buyer(options) {
    * Add a new buyer
    */
   this.add('role:buyer,cmd:create', (msg, reply) => {
-    var buyer = this.make('buyer')
-    buyer.balance = JSON.parse(msg.args.body).balance
+    const BUYER_TYPE = ["a","b"];
+    var buyer = this.make('buyer');
+    buyer.balance = JSON.parse(msg.args.body).balance;
+    buyer.type = BUYER_TYPE[Math.floor(Math.random() * BUYER_TYPE.length)];
     buyer.save$(function (err, saved_buyer) {
       if (err) {
         reply(err);
       } else {
-        reply(null, saved_buyer)
+        reply(null, saved_buyer);
       }
     })
   })
