@@ -4,8 +4,8 @@ const SenecaWeb = require('seneca-web');
 const port = 3002;
 
 let Routes = [{
-  pin: 'role:buyer,cmd:*',
-  prefix: '/buyer',
+  pin: 'role:product,cmd:*',
+  prefix: '/product',
   map: {
     list: {
       GET: true,
@@ -20,8 +20,8 @@ let Routes = [{
   }
 },
 {
-  pin: 'role:buyer,cmd:list,criteria:byType',
-  prefix: '/buyer',
+  pin: 'role:product,cmd:list,criteria:byType',
+  prefix: '/product',
   map: {
     list: {
       GET: true,
@@ -38,7 +38,7 @@ let senecaWebConfig = {
 
 const seneca = require('seneca')({ log: 'silent' })
   .use(SenecaWeb, senecaWebConfig)
-  .use('buyer')
+  .use('product')
   .use('entity')
   .use('mongo-store', {
     uri: 'mongodb://127.0.0.1:27017/local',
