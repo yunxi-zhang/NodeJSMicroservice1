@@ -39,10 +39,10 @@ module.exports = function product(options) {
    * Add a new product
    */
   this.add('role:product,cmd:create', (msg, reply) => {
-    const product_TYPE = ["a","b"];
+    const PRODUCT_TYPE = ["apple","banana", "strawberry", "orange"];
     var product = this.make('product');
-    product.balance = JSON.parse(msg.args.body).balance;
-    product.type = product_TYPE[Math.floor(Math.random() * product_TYPE.length)];
+    product.amount = Math.floor(Math.random() * 100);
+    product.type = PRODUCT_TYPE[Math.floor(Math.random() * PRODUCT_TYPE.length)];
     product.save$(function (err, saved_product) {
       if (err) {
         reply(err);
